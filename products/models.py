@@ -26,6 +26,8 @@ class   Category(models.Model):
         verbose_name = _('Category')
         verbose_name_plural = _('Categories')
 
+    def __str__(self):
+        return self.title
 
 
 class Product(models.Model):
@@ -43,6 +45,9 @@ class Product(models.Model):
         verbose_name = _('Product')
         verbose_name_plural = _('Products')
 
+    def __str__(self):
+        return self.title
+
 
 class File(models.Model):
 
@@ -50,6 +55,7 @@ class File(models.Model):
         models.ForeignKey(
             'Product',
             verbose_name=_('product'),
+            related_name='files',
             on_delete=models.CASCADE
         )
 
@@ -60,3 +66,6 @@ class File(models.Model):
     created_time = models.DateTimeField(_('created_time'), auto_now_add=True)
     updated_time = models.DateTimeField(_('updated_time'), auto_now=True)
 
+
+    def __str__(self):
+        return self.title
